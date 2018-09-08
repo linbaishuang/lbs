@@ -5,15 +5,15 @@ const maze = require("../../src/maze");
 describe('maze task', ()=>{
     it('Successful return when the rows and colunms are equal', ()=>{
         const indata = `3 3
-        0,1 0,2;0,0 1,0;0,1 1,1;0,2 1,2;1,0 1,1;1,1 1,2;1,1 2,1;1,2 2,2;2,0 2,1`;
+0,1 0,2;0,0 1,0;0,1 1,1;0,2 1,2;1,0 1,1;1,1 1,2;1,1 2,1;1,2 2,2;2,0 2,1`;
         
         const outputData = `[W] [W] [W] [W] [W] [W] [W]
-        [W] [R] [W] [R] [R] [R] [W]
-        [W] [R] [W] [R] [W] [R] [W]
-        [W] [R] [R] [R] [R] [R] [W]
-        [W] [W] [W] [R] [W] [R] [W]
-        [W] [R] [R] [R] [W] [R] [W]
-        [W] [W] [W] [W] [W] [W] [W]`;
+[W] [R] [W] [R] [R] [R] [W]
+[W] [R] [W] [R] [W] [R] [W]
+[W] [R] [R] [R] [R] [R] [W]
+[W] [W] [W] [R] [W] [R] [W]
+[W] [R] [R] [R] [W] [R] [W]
+[W] [W] [W] [W] [W] [W] [W]`;
         
         expect(maze.rowEqualCol(indata)).toEqual(outputData);
     });
