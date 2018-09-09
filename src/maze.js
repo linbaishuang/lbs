@@ -1,6 +1,6 @@
 'use strict';
 
-var rowEqualCol = function rowEqualCol(inData){
+var successfulOutput = function successfulOutput(inData){
     let row = inData[0];         //行
     let col = inData[2];         //列
     var renderRow = 0;           //渲染完成后总共的行数
@@ -12,7 +12,6 @@ var rowEqualCol = function rowEqualCol(inData){
     middleArr = inData.split("\n");
     renderRow = middleArr[0].split(" ")[0] * 2 + 1;
     renderCol = middleArr[0].split(" ")[1] * 2 + 1;
-
     for(var i = 0;i < renderRow;i++){
         let actualRow = middleRow * 2 + 1;
         var [...indexArr] = twoDimensionalArr;
@@ -37,10 +36,17 @@ var rowEqualCol = function rowEqualCol(inData){
     }
     twoDimensionalArr = new Array();
     twoDimensionalArr = middleArr[1].split(";");
+    for(var k = 0,len = twoDimensionalArr.length;k < len;k++){
+        if(twoDimensionalArr[k] === undefined || twoDimensionalArr[k] === ""){
+            twoDimensionalArr.splice(k, 1);
+        }
+    }
     for(var x = 0;x < twoDimensionalArr.length;x++){
         var relateArr = twoDimensionalArr[x].split(" ");
-        var linkHead = relateArr[0].split(",");
-        var linkEnd = relateArr[1].split(",");
+        if(relateArr.length > 0){
+            var linkHead = relateArr[0].split(",");
+            var linkEnd = relateArr[1].split(",");
+        } else break;
         var rowGap = (parseInt(linkEnd[0]) * 2 + 1) - (parseInt(linkHead[0]) * 2 + 1);
         var colGap = (parseInt(linkEnd[1]) * 2 + 1) - (parseInt(linkHead[1]) * 2 + 1);
         if(rowGap === 2 && colGap === 0){
@@ -56,24 +62,40 @@ var rowEqualCol = function rowEqualCol(inData){
     var str = renderArr.join(",").replace(/,/g, " ");
     var sss = "";
     for(var s = 0;s < str.length;){
-        sss += str.substring(s, s + renderCol * 3 + 7) + "\n";
-        s += renderCol * 3 + 7;
+        sss += str.substring(s, s + renderCol * 3 + renderCol - 1) + "\n";
+        s += renderCol * 3 + renderCol;
     }
+    sss = sss.replace(/^\s+|\s+$/g,"")
     return sss;
 }
-    
 
-var rowNotEqualCol = function rowNotEqualCol(inData){
-
-}
-
-var unableConnect = function unableConnect(inData){
-
-}
 
 var invalidNumber = function invalidNumber(inData){
+    let row = inData[0];         //行
+    let col = inData[2];         //列
+    var renderRow = 0;           //渲染完成后总共的行数
+    var renderCol = 0;           //渲染完成后总共的列数
+    var renderArr = new Array();    //渲染形成的二维数组
+    var twoDimensionalArr = new Array();    //向二维数组中填充所用
+    var middleArr = new Array();    //将用户输入的数据切割后用此数组存储
+    var middleRow = 0;         //填数时循环遍历所用
     var str = "Invalid number format";
-    return str;
+    middleArr = inData.split("\n");
+    if(/^[0-9]$/.test(row) && /^[0-9]$/.test(col)){
+        twoDimensionalArr = middleArr[1].split(";");
+        for(var x = 0;x < twoDimensionalArr.length;x++){
+            var relateArr = twoDimensionalArr[x].split(" ");
+            if(relateArr.length > 0){
+                var linkHead = relateArr[0].split(",");
+                var linkEnd = relateArr[1].split(",");
+            } else break;
+            if(/^[0-9]$/.test(linkEnd[0]) === false || /^[0-9]$/.test(linkEnd[1]) === false || /^[0-9]$/.test(linkHead[0]) === false || /^[0-9]$/.test(linkHead[1]) === false){
+                return str
+            }
+        }
+    } else { 
+        return str;
+    }
 }
 
 var outOfRange = function outOfRange(inData){
@@ -92,9 +114,7 @@ var connectivityError = function connectivityError(inData){
 }
 
 module.exports = {
-    rowEqualCol,
-    rowNotEqualCol,
-    unableConnect,
+    successfulOutput,
     invalidNumber,
     outOfRange,
     incorect,

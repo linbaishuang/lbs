@@ -15,62 +15,70 @@ describe('maze task', ()=>{
 [W] [R] [R] [R] [W] [R] [W]
 [W] [W] [W] [W] [W] [W] [W]`;
         
-        expect(maze.rowEqualCol(indata)).toEqual(outputData);
+        expect(maze.successfulOutput(indata)).toEqual(outputData);
     });
 
-    // it('Successful return when the rows and colnums are not equals', ()=>{
-        // const inputData = `5 4
-        // 0,0 1,0;1,0 1,1;1,1 1,2;1,2 2,2;2,2 2,3;3,0 3,1;3,1 2,1;3,1 4,1`;
+    it('Successful return when the rows and colnums are not equals', ()=>{
+        const inputData = `5 4
+0,0 1,0;1,0 1,1;1,1 1,2;1,2 2,2;2,2 2,3;3,0 3,1;3,1 2,1;3,1 4,1`;
 
-        // const outputData = `[W] [W] [W] [W] [W] [W] [W] [W] [W]
-        // [W] [R] [W] [R] [W] [R] [W] [R] [W]
-        // [W] [R] [W] [W] [W] [W] [W] [W] [W]
-        // [W] [R] [R] [R] [R] [R] [W] [R] [W]
-        // [W] [W] [W] [W] [W] [R] [W] [W] [W]
-        // [W] [R] [W] [R] [W] [R] [R] [R] [W]
-        // [W] [W] [W] [R] [W] [W] [W] [W] [W]
-        // [W] [R] [R] [R] [W] [R] [W] [R] [W]
-        // [W] [W] [W] [R] [W] [W] [W] [W] [W]
-        // [W] [R] [W] [R] [W] [R] [W] [R] [W]
-        // [W] [W] [W] [W] [W] [W] [W] [W] [W]`
+        const outputData = `[W] [W] [W] [W] [W] [W] [W] [W] [W]
+[W] [R] [W] [R] [W] [R] [W] [R] [W]
+[W] [R] [W] [W] [W] [W] [W] [W] [W]
+[W] [R] [R] [R] [R] [R] [W] [R] [W]
+[W] [W] [W] [W] [W] [R] [W] [W] [W]
+[W] [R] [W] [R] [W] [R] [R] [R] [W]
+[W] [W] [W] [R] [W] [W] [W] [W] [W]
+[W] [R] [R] [R] [W] [R] [W] [R] [W]
+[W] [W] [W] [R] [W] [W] [W] [W] [W]
+[W] [R] [W] [R] [W] [R] [W] [R] [W]
+[W] [W] [W] [W] [W] [W] [W] [W] [W]`;
 
-        // expect(maze.rowNotEqualCol(inputData)).toEqual(outputData);
-    // });
+        expect(maze.successfulOutput(inputData)).toEqual(outputData);
+    });
 
-    // it('Unable to connect', ()=>{
-    //     const inputData = `4 4
-    //     `
+    it('Unable to connect', ()=>{
+        const inputData = `4 4
+`;
 
-    //     const outputData = `[W] [W] [W] [W] [W] [W] [W] [W] [W]
-    //     [W] [R] [W] [R] [W] [R] [W] [R] [W]
-    //     [W] [W] [W] [W] [W] [W] [W] [W] [W]
-    //     [W] [R] [W] [R] [W] [R] [W] [R] [W]
-    //     [W] [W] [W] [W] [W] [W] [W] [W] [W]
-    //     [W] [R] [W] [R] [W] [R] [W] [R] [W]
-    //     [W] [W] [W] [W] [W] [W] [W] [W] [W]
-    //     [W] [R] [W] [R] [W] [R] [W] [R] [W]
-    //     [W] [W] [W] [W] [W] [W] [W] [W] [W]`
+        const outputData = `[W] [W] [W] [W] [W] [W] [W] [W] [W]
+[W] [R] [W] [R] [W] [R] [W] [R] [W]
+[W] [W] [W] [W] [W] [W] [W] [W] [W]
+[W] [R] [W] [R] [W] [R] [W] [R] [W]
+[W] [W] [W] [W] [W] [W] [W] [W] [W]
+[W] [R] [W] [R] [W] [R] [W] [R] [W]
+[W] [W] [W] [W] [W] [W] [W] [W] [W]
+[W] [R] [W] [R] [W] [R] [W] [R] [W]
+[W] [W] [W] [W] [W] [W] [W] [W] [W]`
 
-    //     expect(maze.unableConnect(inputData)).toEqual(outputData);
-    // });
+        expect(maze.successfulOutput(inputData)).toEqual(outputData);
+    });
 
-    //  it('Invalid number format', ()=>{
-        // const inputData = `3 3
-        // 0,a 0,2;0,0 1,0;0,1 1,1;0,2 1,2;c,0 1,1;1,1 1,2;1,1 2,1;1,2 2,2;2,0 2,1`;
+     it('Invalid number format', ()=>{
+        const inputData = `3 3
+0,a 0,2;0,0 1,0;0,1 1,1;0,2 1,2;c,0 1,1;1,1 1,2;1,1 2,1;1,2 2,2;2,0 2,1`;
 
-        // const outputData = "Invalid number format";
+        const outputData = "Invalid number format";
 
-        // expect(maze.invalidNumber(inputData)).toEqual(outputData);
-    // });
+        expect(maze.invalidNumber(inputData)).toEqual(outputData);
+    });
 
-    // it('Number out of range(negative number)', ()=>{
-        // const inputData = `3 -1
-        // 0,1 0,2;0,0 1,0;0,1 1,1;0,2 1,2;1,0 1,1;1,1 1,2;1,1 2,1;1,2 2,2;2,0 2,1`;
+    it('Invalid number format', ()=>{
+        const inputData = `3 a
+0,a 0,2;0,0 1,0;0,1 1,1;0,2 1,2;c,0 1,1;1,1 1,2;1,1 2,1;1,2 2,2;2,0 2,1`;
 
-        // const outputData = "Number out of range";
+        const outputData = "Invalid number format";
 
-        // expect(maze.outOfRange(inputData)).toEqual(outputData);
-    // });
+        expect(maze.invalidNumber(inputData)).toEqual(outputData);
+    });
+//     it('Number out of range(negative number)', ()=>{
+//         const inputData = `3 -1
+// 0,1 0,2;0,0 1,0;0,1 1,1;0,2 1,2;1,0 1,1;1,1 1,2;1,1 2,1;1,2 2,2;2,0 2,1`;
+
+//         const outputData = "Number out of range";
+
+//         expect(maze.outOfRange(inputData)).toEqual(outputData);
+//     });
 
     // it('Number out of range(too big)', ()=>{
     //     const inputData = `3 3
